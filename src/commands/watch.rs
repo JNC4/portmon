@@ -67,12 +67,13 @@ pub async fn run(port: u16, interval: Duration) -> anyhow::Result<()> {
 }
 
 fn timestamp() -> String {
-    let now = std::time::SystemTime::now()
-        .duration_since(std::time::UNIX_EPOCH)
-        .unwrap_or_default();
-    let secs = now.as_secs();
-    let hours = (secs / 3600) % 24;
-    let mins = (secs / 60) % 60;
-    let s = secs % 60;
-    format!("{:02}:{:02}:{:02}", hours, mins, s)
+    unsafe {
+        let mut t: nix::libc::time_t = 0;
+        nix::libc::time(&mut t);
+        let tm = nix::libc::localtime(&t);
+        if tm.is_null() {
+            return "??:??:??".to_string();
+        }
+        format!("{:02}:{:02}:{:02}", (*tm).tm_hour, (*tm).tm_min, (*tm).tm_sec)
+    }
 }

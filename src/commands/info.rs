@@ -52,7 +52,11 @@ pub async fn run(port: u16, json: bool) -> anyhow::Result<()> {
             println!("Environment ({} vars):", detail.environ.len());
             for (k, v) in detail.environ.iter().take(20) {
                 let display_v = if v.len() > 80 {
-                    format!("{}...", &v[..77])
+                    let mut end = 77;
+                    while !v.is_char_boundary(end) {
+                        end -= 1;
+                    }
+                    format!("{}...", &v[..end])
                 } else {
                     v.clone()
                 };

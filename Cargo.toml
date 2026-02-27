@@ -2,6 +2,12 @@
 name = "portmonitor"
 version = "0.1.0"
 edition = "2021"
+description = "TUI + CLI port monitor for Linux — see what's listening, filter, sort, kill, and inspect processes"
+license = "MIT"
+repository = "https://github.com/JNC4/portmonitor"
+readme = "README.md"
+keywords = ["port", "network", "tui", "process", "monitor"]
+categories = ["command-line-utilities", "network-programming"]
 
 [dependencies]
 # TUI
@@ -20,9 +26,6 @@ procfs = "0.17"
 nix = { version = "0.29", features = ["signal", "user"] }
 uzers = "0.12"
 
-# Fuzzy matching
-nucleo-matcher = "0.3"
-
 # Clipboard
 cli-clipboard = "0.4"
 
@@ -39,7 +42,3 @@ thiserror = "2"
 
 # Open URLs
 open = "5"
-
-# Logging
-tracing = "0.1"
-tracing-subscriber = { version = "0.3", features = ["env-filter"] }

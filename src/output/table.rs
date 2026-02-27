@@ -31,7 +31,11 @@ pub fn print(entries: &[PortEntry]) -> anyhow::Result<()> {
             let cmd = e.cmdline();
             // Truncate long commands for table display
             let command = if cmd.len() > 60 {
-                format!("{}...", &cmd[..57])
+                let mut end = 57;
+                while !cmd.is_char_boundary(end) {
+                    end -= 1;
+                }
+                format!("{}...", &cmd[..end])
             } else {
                 cmd.to_string()
             };

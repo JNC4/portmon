@@ -1,13 +1,13 @@
 use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
-#[command(name = "portmonitor", about = "Monitor listening ports with rich process info")]
+#[command(name = "portmonitor", about = "Monitor listening ports with rich process info", version)]
 pub struct Cli {
     #[command(subcommand)]
     pub command: Option<Command>,
 
     /// Refresh interval in seconds (TUI mode)
-    #[arg(short, long, default_value = "2.0", global = true)]
+    #[arg(short, long, default_value = "2.0")]
     pub interval: f64,
 }
 
