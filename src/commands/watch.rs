@@ -1,0 +1,78 @@
+use std::time::Duration;
+
+use crate::data::collector::collect_port_entries;
+use crate::data::types::PortEntry;
+
+pub async fn run(port: u16, interval: Duration) -> anyhow::Result<()> {
+    let mut last_state: Option<PortEntry> = None;
+    let mut tick = tokio::time::interval(interval);
+
+    println!("Watching port {}... (Ctrl+C to stop)", port);
+
+    // Initial scan
+    let entries = tokio::task::spawn_blocking(collect_port_entries).await??;
+    let current = entries.into_iter().find(|e| e.port == port);
+    if let Some(ref entry) = current {
+        println!(
+            "[{}] Port {} is currently bound by {} (PID {})",
+            timestamp(),
+            port,
+            entry.process_name(),
+            entry.pid_str(),
+        );
+    } else {
+        println!("[{}] Port {} is currently free", timestamp(), port);
+    }
+    last_state = current;
+
+    loop {
+        tick.tick().await;
+
+        let entries = tokio::task::spawn_blocking(collect_port_entries).await??;
+        let current = entries.into_iter().find(|e| e.port == port);
+
+        match (&last_state, &current) {
+            (None, Some(entry)) => {
+                println!(
+                    "[{}] BIND  port {} <- {} (PID {})",
+                    timestamp(),
+                    port,
+                    entry.process_name(),
+                    entry.pid_str(),
+                );
+            }
+            (Some(_), None) => {
+                println!("[{}] FREE  port {}", timestamp(), port);
+            }
+            (Some(prev), Some(curr)) => {
+                let prev_pid = prev.pid();
+                let curr_pid = curr.pid();
+                if prev_pid != curr_pid {
+                    println!(
+                        "[{}] CHANGE port {}: {} (PID {}) -> {} (PID {})",
+                        timestamp(),
+                        port,
+                        prev.process_name(),
+                        prev.pid_str(),
+                        curr.process_name(),
+                        curr.pid_str(),
+                    );
+                }
+            }
+            (None, None) => {}
+        }
+
+        last_state = current;
+    }
+}
+
+fn timestamp() -> String {
+    let now = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .unwrap_or_default();
+    let secs = now.as_secs();
+    let hours = (secs / 3600) % 24;
+    let mins = (secs / 60) % 60;
+    let s = secs % 60;
+    format!("{:02}:{:02}:{:02}", hours, mins, s)
+}
