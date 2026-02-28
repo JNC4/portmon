@@ -21,8 +21,8 @@ jobs:
       - name: Package binary
         run: |
           cd target/release
-          tar czf portmonitor-x86_64-linux.tar.gz portmonitor
+          tar czf portmon-x86_64-linux.tar.gz portmon
       - uses: softprops/action-gh-release@v2
         with:
-          files: target/release/portmonitor-x86_64-linux.tar.gz
+          files: target/release/portmon-x86_64-linux.tar.gz
           generate_release_notes: true
