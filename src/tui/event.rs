@@ -1,13 +1,11 @@
 use std::time::Duration;
 
-use crossterm::event::{Event as CrosstermEvent, EventStream, KeyEvent, MouseEvent};
+use crossterm::event::{Event as CrosstermEvent, EventStream, KeyEvent};
 use futures::StreamExt;
 
 #[derive(Debug)]
 pub enum Event {
     Key(KeyEvent),
-    Mouse(MouseEvent),
-    Resize(u16, u16),
     Tick,
 }
 
@@ -38,17 +36,7 @@ impl EventHandler {
                                     break;
                                 }
                             }
-                            Some(Ok(CrosstermEvent::Mouse(mouse))) => {
-                                if tx.send(Event::Mouse(mouse)).is_err() {
-                                    break;
-                                }
-                            }
-                            Some(Ok(CrosstermEvent::Resize(w, h))) => {
-                                if tx.send(Event::Resize(w, h)).is_err() {
-                                    break;
-                                }
-                            }
-                            Some(Ok(_)) => {} // FocusGained, FocusLost, Paste
+                            Some(Ok(_)) => {}
                             Some(Err(_)) => break,
                             None => break,
                         }

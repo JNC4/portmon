@@ -10,8 +10,6 @@ pub const SELECTED_STYLE: Style = Style::new()
 
 pub const FILTER_STYLE: Style = Style::new().fg(Color::Yellow);
 
-pub const HELP_STYLE: Style = Style::new().fg(Color::DarkGray);
-
 pub const STATUS_STYLE: Style = Style::new().fg(Color::White).bg(Color::DarkGray);
 
 pub const BORDER_STYLE: Style = Style::new().fg(Color::DarkGray);
@@ -30,10 +28,4 @@ pub fn row_style(entry: &PortEntry) -> Style {
     } else {
         Style::default().fg(Color::White)
     }
-}
-
-pub fn sort_indicator_style() -> Style {
-    Style::default()
-        .fg(Color::Green)
-        .add_modifier(Modifier::BOLD)
 }

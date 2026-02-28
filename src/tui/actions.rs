@@ -40,10 +40,6 @@ pub fn handle_action(app: &mut App, action: Action) {
             app.filter_text.pop();
             app.recompute_view();
         }
-        Action::FilterClear => {
-            app.filter_text.clear();
-            app.recompute_view();
-        }
         Action::SortByColumn(col) => {
             if app.sort_column == col {
                 app.sort_order = app.sort_order.toggle();
@@ -107,7 +103,7 @@ pub fn handle_action(app: &mut App, action: Action) {
                 }
             }
         }
-        Action::CancelAction => {
+        Action::Cancel => {
             app.confirm_kill = None;
         }
         Action::CopyPort => {

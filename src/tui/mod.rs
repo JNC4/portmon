@@ -66,12 +66,6 @@ async fn run_loop(
                 let new_entries = tokio::task::spawn_blocking(collect_port_entries).await??;
                 app.update_entries(new_entries);
             }
-            Some(Event::Resize(_, _)) => {
-                // Terminal handles resize automatically on next draw
-            }
-            Some(Event::Mouse(_)) => {
-                // Mouse support can be added later
-            }
             None => break,
         }
 

@@ -18,12 +18,11 @@ pub enum Action {
     ExitFilterMode,
     FilterInput(char),
     FilterBackspace,
-    FilterClear,
     SortByColumn(SortColumn),
     Kill,
     ForceKill,
     ConfirmKill,
-    CancelAction,
+    Cancel,
     CopyPort,
     CopyPid,
     CopyCmdline,
@@ -42,7 +41,7 @@ pub fn handle_key(app: &App, key: KeyEvent) -> Action {
     if app.confirm_kill.is_some() {
         return match key.code {
             KeyCode::Char('y') | KeyCode::Enter => Action::ConfirmKill,
-            _ => Action::CancelAction,
+            _ => Action::Cancel,
         };
     }
 

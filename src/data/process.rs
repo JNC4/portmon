@@ -1,5 +1,4 @@
 use std::collections::HashMap;
-use std::path::PathBuf;
 
 use crate::data::types::{ChildProcess, ProcessDetail, ProcessInfo};
 
@@ -172,9 +171,4 @@ pub fn resolve_username(uid: u32) -> String {
     uzers::get_user_by_uid(uid)
         .map(|u| u.name().to_string_lossy().into_owned())
         .unwrap_or_else(|| uid.to_string())
-}
-
-/// Get the cwd of a process as a string.
-pub fn get_cwd(pid: i32) -> Option<PathBuf> {
-    procfs::process::Process::new(pid).ok()?.cwd().ok()
 }

@@ -11,9 +11,6 @@ pub enum PortMonitorError {
     #[error("process {0} no longer exists")]
     ProcessGone(i32),
 
-    #[error("clipboard unavailable: {0}")]
-    Clipboard(String),
-
     #[error(transparent)]
     Io(#[from] std::io::Error),
 
