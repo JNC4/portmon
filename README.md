@@ -1,21 +1,21 @@
-# portmonitor
+# portmon
 
 TUI + CLI port monitor for Linux. See what's listening, which project owns it, and take action.
 
-![portmonitor TUI](screenshots/tui.png)
+![portmon TUI](screenshots/tui.png)
 
 ## Install
 
 ```sh
-cargo install portmonitor
+cargo install portmon
 ```
 
-Or grab a binary from [releases](https://github.com/JNC4/portmonitor/releases).
+Or grab a binary from [releases](https://github.com/JNC4/portmon/releases).
 
 ### Arch Linux (AUR)
 
 ```sh
-yay -S portmonitor
+yay -S portmon
 ```
 
 ## Usage
@@ -23,18 +23,18 @@ yay -S portmonitor
 Run with no arguments for interactive TUI:
 
 ```sh
-portmonitor
+portmon
 ```
 
 ### CLI commands
 
 ```sh
-portmonitor list              # tabular port list
-portmonitor list --json       # JSON output for scripting
-portmonitor kill 3000         # SIGTERM process on port 3000
-portmonitor kill 3000 --force # SIGKILL
-portmonitor info 8080         # detailed process info
-portmonitor watch 3000        # print bind/unbind events
+portmon list              # tabular port list
+portmon list --json       # JSON output for scripting
+portmon kill 3000         # SIGTERM process on port 3000
+portmon kill 3000 --force # SIGKILL
+portmon info 8080         # detailed process info
+portmon watch 3000        # print bind/unbind events
 ```
 
 ### TUI keybindings

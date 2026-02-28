@@ -1,13 +1,13 @@
 # Maintainer: JNC4 <https://github.com/JNC4>
-pkgname=portmonitor
+pkgname=portmon
 pkgver=0.1.0
 pkgrel=1
 pkgdesc='TUI + CLI port monitor for Linux — see what is listening, filter, sort, kill, and inspect processes'
 arch=('x86_64')
-url='https://github.com/JNC4/portmonitor'
+url='https://github.com/JNC4/portmon'
 license=('MIT')
 makedepends=('cargo')
-source=("$pkgname-$pkgver.tar.gz::https://github.com/JNC4/portmonitor/archive/v$pkgver.tar.gz")
+source=("$pkgname-$pkgver.tar.gz::https://github.com/JNC4/portmon/archive/v$pkgver.tar.gz")
 sha256sums=('SKIP')
 
 prepare() {
@@ -25,6 +25,6 @@ build() {
 
 package() {
   cd "$pkgname-$pkgver"
-  install -Dm755 "target/release/portmonitor" "$pkgdir/usr/bin/portmonitor"
+  install -Dm755 "target/release/portmon" "$pkgdir/usr/bin/portmon"
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }

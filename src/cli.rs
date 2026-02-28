@@ -2,7 +2,7 @@ use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
 #[command(
-    name = "portmonitor",
+    name = "portmon",
     about = "Monitor listening ports with rich process info",
     version
 )]
