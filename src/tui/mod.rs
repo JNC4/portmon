@@ -9,9 +9,7 @@ pub mod ui;
 use std::time::Duration;
 
 use crossterm::event::{DisableMouseCapture, EnableMouseCapture};
-use crossterm::terminal::{
-    self, EnterAlternateScreen, LeaveAlternateScreen,
-};
+use crossterm::terminal::{self, EnterAlternateScreen, LeaveAlternateScreen};
 use ratatui::backend::CrosstermBackend;
 use ratatui::Terminal;
 

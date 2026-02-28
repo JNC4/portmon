@@ -14,12 +14,18 @@ pub async fn run(port: u16, force: bool, yes: bool) -> anyhow::Result<()> {
         .find(|e| e.port == port)
         .ok_or(PortMonitorError::PortNotFound(port))?;
 
-    let process = entry
-        .process
-        .as_ref()
-        .ok_or_else(|| anyhow::anyhow!("process info unavailable for port {} (try running as root)", port))?;
+    let process = entry.process.as_ref().ok_or_else(|| {
+        anyhow::anyhow!(
+            "process info unavailable for port {} (try running as root)",
+            port
+        )
+    })?;
 
-    let sig = if force { Signal::SIGKILL } else { Signal::SIGTERM };
+    let sig = if force {
+        Signal::SIGKILL
+    } else {
+        Signal::SIGTERM
+    };
     let sig_name = if force { "SIGKILL" } else { "SIGTERM" };
 
     if !yes {

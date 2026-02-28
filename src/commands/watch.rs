@@ -74,6 +74,11 @@ fn timestamp() -> String {
         if tm.is_null() {
             return "??:??:??".to_string();
         }
-        format!("{:02}:{:02}:{:02}", (*tm).tm_hour, (*tm).tm_min, (*tm).tm_sec)
+        format!(
+            "{:02}:{:02}:{:02}",
+            (*tm).tm_hour,
+            (*tm).tm_min,
+            (*tm).tm_sec
+        )
     }
 }

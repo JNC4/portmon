@@ -100,7 +100,10 @@ pub struct PortEntry {
 
 impl PortEntry {
     pub fn process_name(&self) -> &str {
-        self.process.as_ref().map(|p| p.name.as_str()).unwrap_or("-")
+        self.process
+            .as_ref()
+            .map(|p| p.name.as_str())
+            .unwrap_or("-")
     }
 
     pub fn pid(&self) -> Option<i32> {
@@ -164,7 +167,10 @@ impl PortEntry {
                 .to_lowercase()
                 .cmp(&other.process_name().to_lowercase()),
             SortColumn::User => self.username.cmp(&other.username),
-            SortColumn::Project => self.project().to_lowercase().cmp(&other.project().to_lowercase()),
+            SortColumn::Project => self
+                .project()
+                .to_lowercase()
+                .cmp(&other.project().to_lowercase()),
             SortColumn::State => self.state.short().cmp(other.state.short()),
             SortColumn::Command => self.cmdline().cmp(other.cmdline()),
         }

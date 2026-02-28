@@ -10,9 +10,12 @@ pub async fn run(port: u16, json: bool) -> anyhow::Result<()> {
         .find(|e| e.port == port)
         .ok_or(PortMonitorError::PortNotFound(port))?;
 
-    let pid = entry
-        .pid()
-        .ok_or_else(|| anyhow::anyhow!("process info unavailable for port {} (try running as root)", port))?;
+    let pid = entry.pid().ok_or_else(|| {
+        anyhow::anyhow!(
+            "process info unavailable for port {} (try running as root)",
+            port
+        )
+    })?;
 
     let detail = load_process_detail(pid)
         .ok_or_else(|| anyhow::anyhow!("could not read process details for PID {}", pid))?;

@@ -1,7 +1,11 @@
 use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
-#[command(name = "portmonitor", about = "Monitor listening ports with rich process info", version)]
+#[command(
+    name = "portmonitor",
+    about = "Monitor listening ports with rich process info",
+    version
+)]
 pub struct Cli {
     #[command(subcommand)]
     pub command: Option<Command>,

@@ -51,26 +51,11 @@ pub fn render_help_overlay(frame: &mut Frame, _app: &App, area: Rect) {
     let lines = vec![
         Line::from(""),
         Line::from(vec![key_span("  Navigation")]),
-        Line::from(vec![
-            key_span("  j/↓  "),
-            desc_span("Move down"),
-        ]),
-        Line::from(vec![
-            key_span("  k/↑  "),
-            desc_span("Move up"),
-        ]),
-        Line::from(vec![
-            key_span("  g    "),
-            desc_span("Go to top"),
-        ]),
-        Line::from(vec![
-            key_span("  G    "),
-            desc_span("Go to bottom"),
-        ]),
-        Line::from(vec![
-            key_span("  PgUp/PgDn "),
-            desc_span("Page up/down"),
-        ]),
+        Line::from(vec![key_span("  j/↓  "), desc_span("Move down")]),
+        Line::from(vec![key_span("  k/↑  "), desc_span("Move up")]),
+        Line::from(vec![key_span("  g    "), desc_span("Go to top")]),
+        Line::from(vec![key_span("  G    "), desc_span("Go to bottom")]),
+        Line::from(vec![key_span("  PgUp/PgDn "), desc_span("Page up/down")]),
         Line::from(""),
         Line::from(vec![key_span("  Actions")]),
         Line::from(vec![
@@ -81,36 +66,15 @@ pub fn render_help_overlay(frame: &mut Frame, _app: &App, area: Rect) {
             key_span("  x    "),
             desc_span("Kill process (SIGTERM)"),
         ]),
-        Line::from(vec![
-            key_span("  X    "),
-            desc_span("Force kill (SIGKILL)"),
-        ]),
-        Line::from(vec![
-            key_span("  d    "),
-            desc_span("Toggle detail pane"),
-        ]),
-        Line::from(vec![
-            key_span("  o    "),
-            desc_span("Open in browser"),
-        ]),
-        Line::from(vec![
-            key_span("  r    "),
-            desc_span("Manual refresh"),
-        ]),
+        Line::from(vec![key_span("  X    "), desc_span("Force kill (SIGKILL)")]),
+        Line::from(vec![key_span("  d    "), desc_span("Toggle detail pane")]),
+        Line::from(vec![key_span("  o    "), desc_span("Open in browser")]),
+        Line::from(vec![key_span("  r    "), desc_span("Manual refresh")]),
         Line::from(""),
         Line::from(vec![key_span("  Clipboard")]),
-        Line::from(vec![
-            key_span("  y    "),
-            desc_span("Copy port"),
-        ]),
-        Line::from(vec![
-            key_span("  Y    "),
-            desc_span("Copy PID"),
-        ]),
-        Line::from(vec![
-            key_span("  c    "),
-            desc_span("Copy command"),
-        ]),
+        Line::from(vec![key_span("  y    "), desc_span("Copy port")]),
+        Line::from(vec![key_span("  Y    "), desc_span("Copy PID")]),
+        Line::from(vec![key_span("  c    "), desc_span("Copy command")]),
         Line::from(""),
         Line::from(vec![key_span("  Sorting")]),
         Line::from(vec![
@@ -118,10 +82,7 @@ pub fn render_help_overlay(frame: &mut Frame, _app: &App, area: Rect) {
             desc_span("Sort by column (press again to reverse)"),
         ]),
         Line::from(""),
-        Line::from(vec![
-            key_span("  q/Esc"),
-            desc_span(" Close help"),
-        ]),
+        Line::from(vec![key_span("  q/Esc"), desc_span(" Close help")]),
     ];
 
     let block = ratatui::widgets::Block::default()
@@ -145,4 +106,3 @@ fn key_span(s: &str) -> Span<'_> {
 fn desc_span(s: &str) -> Span<'_> {
     Span::styled(s, Style::default().fg(ratatui::style::Color::DarkGray))
 }
-
