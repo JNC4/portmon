@@ -58,17 +58,17 @@ portmon watch 3000        # print bind/unbind events
 
 ## Features
 
-- **Fuzzy filter** — `/` to search across all columns (protocol, address, port, process, user, project, state, command)
-- **Project detection** — shows which project directory each process runs from
-- **Detail pane** — CWD, open FDs, threads, RSS, child processes, container ID
-- **Kill** — SIGTERM/SIGKILL with confirmation
-- **Clipboard** — copy port, PID, or full command
-- **Container detection** — identifies Docker/Podman containers via cgroup
-- **Color coding** — red for root, yellow for well-known ports, cyan for containers
+- **Fuzzy filter** - `/` to search across all columns (protocol, address, port, process, user, project, state, command)
+- **Project detection** - shows which project directory each process runs from
+- **Detail pane** - CWD, open FDs, threads, RSS, child processes, container ID
+- **Kill** - SIGTERM/SIGKILL with confirmation
+- **Clipboard** - copy port, PID, or full command
+- **Container detection** - identifies Docker/Podman containers via cgroup
+- **Color coding** - red for root, yellow for well-known ports, cyan for containers
 
 ## Requirements
 
-Linux only. Reads `/proc` directly via the `procfs` crate — no shelling out to `ss` or `lsof`.
+Linux only. Reads `/proc` directly via the `procfs` crate - no shelling out to `ss` or `lsof`.
 
 Works unprivileged (shows what your user can see). Run as root for full visibility.
 

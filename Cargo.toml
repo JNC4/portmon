@@ -1,8 +1,8 @@
 [package]
 name = "portmon"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
-description = "TUI + CLI port monitor for Linux — see what's listening, filter, sort, kill, and inspect processes"
+description = "TUI + CLI port monitor for Linux - see what's listening, filter, sort, kill, and inspect processes"
 license = "MIT"
 repository = "https://github.com/JNC4/portmon"
 readme = "README.md"

@@ -2,7 +2,7 @@
 pkgname=portmon
 pkgver=0.1.0
 pkgrel=1
-pkgdesc='TUI + CLI port monitor for Linux — see what is listening, filter, sort, kill, and inspect processes'
+pkgdesc='TUI + CLI port monitor for Linux - see what is listening, filter, sort, kill, and inspect processes'
 arch=('x86_64')
 url='https://github.com/JNC4/portmon'
 license=('MIT')
