@@ -2,6 +2,8 @@
 
 TUI + CLI port monitor for Linux. See what's listening, which project owns it, and take action.
 
+Don't use this to see what's specifically on a port you want. You should probably just run a normal command. But often if you're coding with multiple agents and yourself, you want to just have quick visibility over everything.
+
 ![portmon TUI](screenshots/tui.png)
 
 ## Install
